@@ -1,0 +1,63 @@
+create database if not exists mose1;
+use mose1;
+
+Create table if not exists Anställd
+(
+
+    AID INT not null,
+    Namn Varchar (20),
+    Adress Varchar (20),
+    Ort Varchar (20),
+    Telefon varchar (20),
+    Lön Varchar (20),
+
+Primary key (AID)
+);
+
+Create table if not exists Avdelning
+(
+
+    AVDID Int not null,
+    Namn varchar (20),
+    Ort varchar (20),
+    Telefon varchar(20),
+    AID Int not null,
+
+Primary key (AVDID),
+Foreign key (AID) references Anställd (AID)
+
+);
+
+create table if not exists Projekt
+(
+
+    PID INT NOT NULL,
+    Namn varchar(20),
+    Startdatum varchar(20),
+
+Primary key (PID)
+
+);
+
+create table if not exists Anställd_Projekt
+(
+
+    AID INT NOT NULL,
+    PID INT NOT NULL,
+    Testdatum varchar(20),
+
+PRIMARY KEY (AID,PID)
+
+);
+
+insert into Anställd
+Values (001, 'David','Gatan 1','Stockholm','0701231231','20 000'), (002, 'Jonas', 'Vägen 2', 'Göteborg', '0706546544', '25 000'), (003, 'Frida', 'Backen 4', 'Malmö', '0709984578', '18 000');
+
+insert into Avdelning
+Values (901, 'Öst', 'Stockholm', '1231414141', 001), (902, 'Väst', 'Göteborg', '1238758233', 002), (903, 'Syd', 'Malmö', '123414123', 003);
+
+insert into Projekt
+values (101, 'Sälj', '20050325'), (102, 'Kundservice', '20060101')
+
+insert into anställd_projekt
+values (001, 101, '25 juni 2001'), (002, 102, '20 Maj 2005');
